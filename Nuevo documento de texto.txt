@@ -1,0 +1,8 @@
+set FLASK_ENV=development
+set FLASK_APP=run.py
+C:\Users\HP\Desktop\PROYECTO DAW\project mockup>
+
+pip freeze > requirements.txt //crea un fichero txt con los requirimentos
+pip install -r requierments.txt
+
+//instalar requirements

@@ -1,0 +1,29 @@
+{% extends "public/templates/pub_template.html" %}
+
+{% block title %} Entrar {% endblock %}
+
+{% block main %} 
+
+<div class="container">
+  <div class="wrapper fadeInDown">
+    <br><br><br>
+      <div id="form">
+          <h2 class="fadeIn first">
+              Entrar
+          </h2>
+          <form action='/login' method="POST" name="login">
+              <input type="text" id="login" class="fadeIn second" name="login" placeholder="Nombre Usuario">
+              <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña">
+              <input type="submit" class="fadeIn fourth" value="Entrar">
+            </form>
+
+      
+      <div id="formFooter">
+          <a class="underlineHover" href="/register">No está registrado?</a>
+        </div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,9 @@
+Here is your key: 19ebcd33
+
+Please append it to all of your API requests,
+
+OMDb API: http://www.omdbapi.com/?i=tt3896198&apikey=19ebcd33
+Poster API: http://img.omdbapi.com/?i=tt3896198&h=600&apikey=19ebcd33
+
+*Keys will only work for active Patrons.
+If you did not make this request, please disregard this email.

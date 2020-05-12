@@ -1,0 +1,16 @@
+{% extends 'public/templates/pub_template.html'%}
+{% block title %} Profile {% endblock %}
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1> Profile</h1>
+            Hello {{ user }} with email {{email}}
+            <br>
+            <form action="/logout"><input type="submit" value="Salir"></form>
+            
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
