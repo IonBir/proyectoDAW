@@ -6,3 +6,7 @@ pip freeze > requirements.txt //crea un fichero txt con los requirimentos
 pip install -r requierments.txt
 
 //instalar requirements
+
+
+font awsoem
+sadfvsdfgv

@@ -13,7 +13,11 @@ def index():
     #createTable()   
     #print('1',flush=True)
     #print(app.config)
-    return render_template('public/index.html')
+    if session.get('user',None) is not None:
+        user=session['user']
+        return render_template('public/index.html',user=user)
+    else:
+        return render_template('public/index.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
