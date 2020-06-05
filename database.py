@@ -6,10 +6,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from tempfile import mkdtemp
 import mysql.connector
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '12345'
-app.config['MYSQL_DB'] = 'proyecto'
+app.config['MYSQL_HOST'] = 'us-cdbr-east-05.cleardb.net'
+app.config['MYSQL_USER'] = 'b4d1f030cf5775'
+app.config['MYSQL_PASSWORD'] = '5cabae98'
+app.config['MYSQL_DB'] = 'heroku_dd6f5322f699d92'
 #app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 app.config['MYSQL_PORT'] = 3305
 mysql = MySQL(app)
