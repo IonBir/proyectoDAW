@@ -1,0 +1,33 @@
+{% extends 'public/templates/pub_template.html'%}
+{%block style%}
+<link rel="stylesheet" href= "{{ url_for('static',filename='styles/moviecard.css') }}">
+{%endblock%}
+{% block title %} Movie App {% endblock %}
+{% block main %}
+<meta id="my-data" data-name="{{ id }}">
+<div id="message"></div>
+<div id="mmoviecard">
+<div id="card" class="card_">  
+</div>
+</div>
+
+<div id="reviews">
+  <form action='/add-review' method="POST">
+    <div class="form-group">
+      <label for="comment">Deja una reseña</label>
+      <textarea name="comment" class="form-control" rows="5" cols="5" id="comment"></textarea>
+      <br>
+      <button type="submit" class="btn btn-dark">Submit</button>
+    </div>
+  </form>
+  <div class="card-body">
+    <div id="reviews_insert" class="row"> 
+   
+    </div>
+</div>
+</div>
+
+{% endblock %}
+{%block script%}
+<script src="{{ url_for('static',filename='moviedisplay.js') }}"></script>
+{%endblock%}

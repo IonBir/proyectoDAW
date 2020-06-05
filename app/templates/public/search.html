@@ -1,0 +1,29 @@
+{% extends 'public/templates/pub_template.html'%}
+{%block style%}
+<link rel="stylesheet" href= "{{ url_for('static',filename='styles/index_style.css') }}">
+{%endblock%}
+  
+{% block title %} Movie App {% endblock %}
+{% block main %}
+<div class="container">
+    
+        <div class="col">
+            <p class="lead">Enter a keyword to search a movie</p>
+            <input type="text" id="searchMovie" class="form-control" placeholder="Movie Name">
+            <br>
+            
+
+            
+        
+    </div>
+</div>
+
+<div class="container container-fluid">
+    <div id="row" class="row">
+        </div>
+        </div>
+
+{% endblock %}
+{%block script%} <script src="{{ url_for('static',filename='apicall.js') }}"></script>
+<script src="{{ url_for('static',filename='popular.js') }}"></script>
+<script src="{{ url_for('static',filename='sidebar.js') }}"></script>{%endblock%}

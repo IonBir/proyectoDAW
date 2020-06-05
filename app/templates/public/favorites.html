@@ -1,0 +1,45 @@
+{% extends 'public/templates/pub_template.html'%}
+{%block style%}
+<link rel="stylesheet" href= "{{ url_for('static',filename='styles/index_style.css') }}">
+{%endblock%}
+  
+{% block title %} Movie App {% endblock %}
+{% block main %}
+
+    
+        
+<div class="container-fluid">
+    <div id="row" class="row"></div>
+    {% for result in result %}
+    <div class="card-view">
+        <div class="card-header ">
+        <a href="/movie/{{result[1]}}">
+        <img src="http://image.tmdb.org/t/p/original/{{result[4]}}.jpg" style="height: 100%;"  alt=""><img/>
+        </a>
+        </div>
+        <div class="card-movie-content">
+        <div class="card-movie-content-head">
+        <a href="/movie/{{result[1]}}">
+        <h3 class="card-movie-title">{{result[2]}}</h3>
+        </a>
+        </div>
+        <div class="card-movie-info">
+        <div class="movie-running-time">
+        <label>Genre</label>
+        <span>{{result[3]}}</span>
+        </div>
+        <!-- <div class="movie-running-time">
+        <label>Running time</label>
+        <span>${movie.runtime}</span>
+        </div> -->
+        </div>
+        </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
+{%block script%} <script src="{{ url_for('static',filename='apicall.js') }}"></script>
+
+<script src="{{ url_for('static',filename='sidebar.js') }}"></script>{%endblock%}

@@ -1,0 +1,86 @@
+{% extends 'public/templates/pub_template.html'%}
+{%block style%}
+<link rel="stylesheet" href= "{{ url_for('static',filename='styles/index_style.css') }}">
+{%endblock%}
+  
+{% block title %} Movie App {% endblock %}
+{% block main %}
+<h1>Advanced Search</h1>
+<!-- <div class="container">
+    <input id= "genre" type="text">
+    <input id= "revenue" type="text">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="MinVal">
+      <input type="text" class="form-control" placeholder="MaxVal">
+  </div>
+    <div class="col text-center">
+        <button onclick="discover()" class="btn btn-default">Centered button</button>
+    </div>
+   
+</div> -->
+<div id="searchform">
+  <!-- Default form contact -->
+<form class="text-center border border-light p-5" action="#!">
+
+  
+  <!-- Subject -->
+  <label>Genre</label>
+  <select id="genre" class="browser-default custom-select mb-4">
+      <option value="" disabled>Choose option</option>
+      <option value="null" selected>Choose...</option>
+        <option value="28">Action</option>
+        <option value="12">Adventure</option>
+        <option value="16">Animation</option>
+        <option value="35">Comedy</option>
+        <option value="80">Crime</option>
+        <option value="99">Documentary</option>
+        <option value="18">Drama</option>
+        <option value="10751">Family</option>
+        <option value="14">Fantasy</option>
+  </select>
+
+  <div  class="range-wrap mt-2">
+    <output class="bubble text-center"></output>
+    <input id="range" type="range" class="range" min="1900" max="2020">
+    
+  </div>
+  <!-- Message -->
+  
+
+  
+
+  <!-- Send button -->
+  <button class="btn btn-info btn-block mt-4" onclick="discover()">Send</button>
+
+</form>
+
+<div class="container container-fluid">
+  <div id="row" class="row">
+  <main role="main" class="col-md-3 ml-sm-auto col-lg-10 px-4 movie_list">
+  <div class="pt-8 pb-2 mb-3 border-bottom">
+  <div class="row">
+  <h1>Search Results</h1>
+  </div>
+  <div class="row">
+  
+  
+  
+  
+  </div>
+  </div>
+  </main>
+  </div>
+  </div>
+
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="/profile">Perfil</a>
+    <a href="#">Contacto</a>
+    <a href="/logout">Salir</a>
+  </div>
+{% endblock %}
+{%block script%} <script src="{{ url_for('static',filename='apicall.js') }}"></script>
+<script src="{{ url_for('static',filename='popular.js') }}"></script>
+<script src="{{ url_for('static',filename='sidebar.js') }}"></script>
+<script src="{{ url_for('static',filename='discover.js') }}"></script>
+{%endblock%}

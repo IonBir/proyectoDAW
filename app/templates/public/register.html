@@ -1,5 +1,8 @@
 {% extends "public/templates/pub_template.html" %}
-
+{%block style%}
+ <link rel="stylesheet" href= "{{ url_for('static',filename='styles/style.css') }}">
+ 
+ {%endblock%}
 {% block title %} Entrar {% endblock %}
 
 {% block main %} 
@@ -18,7 +21,7 @@
 
               <div class="form-group">
               <input type="password" id="password" class="fadeIn second form-control" name="password" placeholder="Contraseña">
-              <div class="invalid-feedback">La Contraseña debe contener al menos un simbolo y yo qkse tio</div>
+              <div class="invalid-feedback">La Contraseña puede tener de 8 a 15 caracteres alfanumericos</div>
               </div>
 
               <div class="form-group">

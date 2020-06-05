@@ -1,16 +1,214 @@
 {% extends 'public/templates/pub_template.html'%}
 {% block title %} Profile {% endblock %}
 {% block main %}
+
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <h1> Profile</h1>
-            Hello {{ user }} with email {{email}}
-            <br>
-            <form action="/logout"><input type="submit" value="Salir"></form>
+  
+  <ul class="nav nav-pills">
+    
+    <li class="active"><a data-toggle="pill" href="#preferencias">Preferencias</a></li>
+    <li><a data-toggle="pill" href="#reviews">Reviews</a></li>
+    <li><a data-toggle="pill" href="#favorites">Favorites</a></li>
+  </ul>
+  
+  <div class="tab-content">
+
+   
+    <div id="favorites" class="tab-pane fade">
+        <div class="content-panel">
+                    
+<div class="container-fluid">
+    <div id="row" class="row"></div>
+    {% for result in favorites %}
+    <div class="card-view">
+        <div class="card-header ">
+        <a href="/movie/{{result[1]}}">
+        <img src="http://image.tmdb.org/t/p/original/{{result[4]}}.jpg" style="height: 100%;"  alt=""><img/>
+        </a>
+        </div>
+        <div class="card-movie-content">
+        <div class="card-movie-content-head">
+        <a href="/movie/{{result[1]}}">
+        <h3 class="card-movie-title">{{result[2]}}</h3>
+        </a>
+        </div>
+        <div class="card-movie-info">
+        <div class="movie-running-time">
+        <label>Genre</label>
+        <span>{{result[3]}}</span>
+        </div>
+        <!-- <div class="movie-running-time">
+        <label>Running time</label>
+        <span>${movie.runtime}</span>
+        </div> -->
+        </div>
+        </div>
+        </div>
+    {% endfor %}
+</div>
+        </div>
+    </div>
+    
+    <div id="reviews" class="tab-pane fade">
+        <div class="content-panel">
+            
+                        {%for review in reviews %}
+                        <div class="container p-3 my-3 ">
+                           
+                            <div class=" container mt-3 p-3">
+                                <a href="/movie/{{review[3]}}"><p>{{review[4]}}</p></a>
+                            </div>
+                          </div>
+                          {% endfor %}
+    </div>
+</div>      
+                
+    
+      
+
+    <div id="preferencias" class="tab-pane fade">
+        <div class="content-panel">
+                    <div class="container">
+            <form action="/profile" method="POST" class="form-horizontal">
+                <fieldset class="fieldset">
+                    <br><br>
+                    <!-- <div class="form-group avatar">
+                        <figure class="figure col-md-2 col-sm-3 col-xs-12">
+                            <img class="img-rounded img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                        </figure>
+                        <div class="form-inline col-md-10 col-sm-9 col-xs-12">
+                            <input type="file" class="file-uploader pull-left">
+                            <button type="submit" class="btn btn-sm btn-default-alt pull-left">Update Image</button>
+                        </div>
+                    </div> -->
+                    <div class="form-group">
+                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">User Name</label>
+                        <div class="col-md-10 col-sm-9 col-xs-12">
+                            <input type="text" id="name" name="name" class="form-control" value="{{user}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">E-Mail</label>
+                        <div class="col-md-10 col-sm-9 col-xs-12">
+                            <input type="text" id="email" name="email" class="form-control" value="{{email}}">
+                        </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">Password</label>
+                        <div class="col-md-10 col-sm-9 col-xs-12">
+                            <input type="text" class="form-control" value="Sanders">
+                        </div>
+                    </div> -->
+                </fieldset>
+                
+                <hr>
+                <div class="form-group">
+                    <div class="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
+                        <input class="btn btn-primary" type="submit" value="Update Profile">
+                        <input action="/logout" class="btn btn-primary" type="submit" value="Salir">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    </div>
+    
+  </div>
+</div>
+
+
+{% endblock %}
+{%block script%} <script src="{{ url_for('static',filename='apicall.js') }}"></script>
+<script src="{{ url_for('static',filename='profile.js') }}"></script>
+
+{%endblock%}
+<!-- 
+<div class="container">
+    <div class="view-account">
+        <section class="module">
+            <div class="module-inner">
+                <div class="side-bar">
+                    
+            		<nav class="side-menu">
+        				
+        					<ul class="nav nav-pills">
+                                
+                                <li><a data-toggle="pill" href="#menu1"><span class="fa fa-user"></span> Preferencias</a></li>
+                                <li><a data-toggle="pill" href="#menu1"><span class="fa fa-cog"></span> Perfil</a></li>
+                                
+                              </ul>
+        				
+        			</nav>
+                </div>
+                <div class="content-panel">
+                    
+                    <form class="form-horizontal">
+                        <fieldset class="fieldset">
+                            <h3 class="fieldset-title">{{user}}</h3>
+                            <div class="form-group avatar">
+                                <figure class="figure col-md-2 col-sm-3 col-xs-12">
+                                    <img class="img-rounded img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                </figure>
+                                <div class="form-inline col-md-10 col-sm-9 col-xs-12">
+                                    <input type="file" class="file-uploader pull-left">
+                                    <button type="submit" class="btn btn-sm btn-default-alt pull-left">Update Image</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">User Name</label>
+                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" value="Rebecca">
+                                </div>
+                            </div>
+        
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">First Name</label>
+                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" value="Rebecca">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Last Name</label>
+                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                    <input type="text" class="form-control" value="Sanders">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="fieldset">
+                            <h3 class="fieldset-title">Contact Info</h3>
+                            <div class="form-group">
+                                <label class="col-md-2  col-sm-3 col-xs-12 control-label">Email</label>
+                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                    <input type="email" class="form-control" value="Rebecca@website.com">
+                                    <p class="help-block">This is the email </p>
+                                </div>
+                            </div>
+                            
+                        </fieldset>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
+                                <input class="btn btn-primary" type="submit" value="Update Profile">
+                                <input action="/logout"class="btn btn-primary" type="submit" value="Salir">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+      <h3>HOME</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+    </div>
+</div>
+            
             
             
         </div>
     </div>
-</div>
-{% endblock %}
+</div> -->

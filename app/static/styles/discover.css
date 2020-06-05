@@ -1,0 +1,12 @@
+.range-wrap {
+    position: relative;
+    margin: 0 auto 3rem;
+  }
+  .range {
+    width: 100%;
+  }
+ 
+  
+  body {
+    margin: 2rem;
+  }

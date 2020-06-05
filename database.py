@@ -19,10 +19,8 @@ app.config['SECRET_KEY']='etc_sa354Aasdf23'
 
 
 def createUser(name,password,email):
-    #mysql = MySQL(app)
     exists=False
     cur = mysql.connection.cursor()
-    #cur = mysql.connection.cursor()
     sql='SELECT * FROM usuario WHERE email = %s'
     cur.execute(sql,[email])
     msg=cur.fetchone()
@@ -38,35 +36,31 @@ def createUser(name,password,email):
     mysql.close()
 
 def loginUser(name,password):
-    #mysql = MySQL(app)
-    #User login
+    
     error = None
     cur = mysql.connection.cursor()
     sql='SELECT * FROM usuario WHERE name = %s'
     cur.execute(sql,[name])
     result=cur.fetchone()
-    passw=result[1]
-    print(passw)
-    #acces tuple for password
-    #print(result[3])
+   
     #Check if user and password is correct
     if result is None:
         error= 'incorect user'
-        #session is id from db
-        #session['user']=result[0]
-    elif check_password_hash(passw,password):
+        
+    elif check_password_hash(result[2],password):
+        error = None
+    else:
         error='incorect password'
-    print (error)
     if error is None:
         session['user']=result[0]
+        session['name']=result[1]
         return True
     else:
+        print (error)
         return False
     
     
-    #this works
-    #print(result[0][2])
-    #print (cur[0])
+
 def getUser(id):
     cur = mysql.connection.cursor()
     sql='SELECT * FROM usuario WHERE id = %s'
@@ -77,4 +71,58 @@ def getUser(id):
     else:
         return result
 
-    
+
+
+def getReviews(movie_id):
+    cur = mysql.connection.cursor()
+    sql='Select * FROM review WHERE movie_id = %s'
+    cur.execute(sql,[movie_id])
+    result=cur.fetchall()
+    print(result)
+    return result
+
+def getReview_user(user_id):
+    cur = mysql.connection.cursor()
+    sql='Select * FROM review WHERE user_id = %s'
+    cur.execute(sql,[user_id])
+    result=cur.fetchall()
+    print(result)
+    return result
+
+def createReview(user_id,user_name,movie_id,data):
+    cur = mysql.connection.cursor()
+    sql='SELECT * FROM review WHERE movie_id=%s AND user_id=%s'
+    cur.execute(sql,(movie_id,user_id))
+    if (cur.fetchone() is None):
+        sql='INSERT INTO review(user_id,user_name,movie_id,review_text) VALUES (%s,%s,%s,%s)'
+        cur.execute(sql,(user_id,user_name,movie_id,data))
+    else:
+        return 'false'
+
+def checkFavorite(user_id,movie_id,movie_name,genre_id,image_id):
+    cur=mysql.connection.cursor()
+    sql='SELECT * FROM favoritos WHERE user_id=%s AND movie_id=%s'
+    cur.execute(sql,(user_id,movie_id))
+    if (cur.fetchone() is None):
+        sql='INSERT INTO favoritos(user_id,movie_id,movie_name,genre_id,movie_poster) VALUES (%s,%s,%s,%s,%s)'
+        cur.execute(sql,(user_id,movie_id,movie_name,genre_id,image_id))
+        return True
+    else:
+        sql='DELETE FROM favoritos WHERE user_id=%s AND movie_id=%s'
+        cur.execute(sql,(user_id,movie_id))
+        return False
+
+def getFavorite(user_id):
+    cur=mysql.connection.cursor()
+    sql='SELECT * FROM favoritos WHERE user_id=%s'
+    cur.execute(sql,[user_id])
+    result=cur.fetchall()
+    return result
+
+def changeAccountData(name,email,userid):
+    cur=mysql.connection.cursor()
+    sql='UPDATE usuario SET name = %s, email = %s WHERE id = %s;'
+    cur.execute(sql,[name,email,userid])
+    result=cur.fetchone()
+
+    return result

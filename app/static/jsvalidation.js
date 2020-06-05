@@ -1,8 +1,8 @@
 //Validación parte cliente con ER
-//Pasar a jQuery
+
 document.getElementById('name').addEventListener('blur',validateName);
 document.getElementById('password').addEventListener('blur',validatePassword);
-document.getElementById('email').addEventListener('blut',validateEmail)
+document.getElementById('email').addEventListener('blur',validateEmail)
 
 function validateName(){
     const name = document.getElementById('name');
@@ -15,11 +15,25 @@ function validateName(){
     }
 }
 function validatePassword(){
-    //TODO
+    const password = document.getElementById('password');
+    const ep = /^[a-zA-Z]{8,15}$/;
+
+    if(!ep.test(password.value)){
+        password.classList.add('is-invalid');
+    }else{
+        password.classList.remove('is-invalid');
+    }
     }
     
     function validateEmail(){
-    //TODO
+        const email = document.getElementById('email');
+        const er = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+    
+        if(!er.test(email.value)){
+           email.classList.add('is-invalid');
+        }else{
+            email.classList.remove('is-invalid');
+        }
     }
 
 

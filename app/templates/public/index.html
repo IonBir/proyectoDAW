@@ -1,16 +1,34 @@
 {% extends 'public/templates/pub_template.html'%}
+{%block style%}
+<link rel="stylesheet" href= "{{ url_for('static',filename='styles/index_style.css') }}">
+{%endblock%}
 {% block title %} Movie App {% endblock %}
 {% block main %}
-<div class="container">
+<h1>Popular movies</h1>
+<div class="container container-fluid">
+    <div id="row" class="row">
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 movie_list">
+    <div class="pt-8 pb-2 mb-3 border-bottom">
     <div class="row">
-        <div class="col">
-            <h1> Movie App</h1>
-            Hello {{ user }} with email {{email}}
-            <br>
-            <form action="/logout"><input type="submit" value="Salir"></form>
-            
-            
-        </div>
+    <h1>Movies</h1>
     </div>
-</div>
+    <div class="row">
+   
+    
+    
+    
+    </div>
+    </div>
+    </main>
+    </div>
+    </div>
+
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="/profile">Perfil</a>
+    <a href="#">Contacto</a>
+    <a href="/logout">Salir</a>
+  </div>
 {% endblock %}
+{%block script%} <script src="{{ url_for('static',filename='popular.js') }}"></script>
+<script src="{{ url_for('static',filename='sidebar.js') }}"></script>{%endblock%}

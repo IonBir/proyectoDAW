@@ -3,13 +3,20 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <link rel="stylesheet" href= "{{ url_for('static',filename='styles/sidebar.css') }}">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+     <link rel="stylesheet" href= "{{ url_for('static',filename='styles/index_style.css') }}">
+     {%block style%}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href= "{{ url_for('static',filename='styles/style.css') }}">
-    <link rel="stylesheet" href= "{{ url_for('static',filename='styles/sidebar.css') }}">
-    <script src="https://kit.fontawesome.com/2f28bda0af.js" crossorigin="anonymous"></script>
+     {%endblock%}
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+     <script src="https://kit.fontawesome.com/2f28bda0af.js" crossorigin="anonymous"></script>
+   
+    
     <title>
     {% block title %}    
         
@@ -18,29 +25,40 @@
 
   </head>
   <body>
-      <nav id='navbarmain' class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">Movie App</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div id="navbarNavDropdown" class="navbar-collapse collapse">
-            <ul class="navbar-nav mr-auto">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <a class="navbar-brand" href="/">MovieAPP</a>
+          <ul class="navbar-nav mr-auto">
               
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                  <i class="menuicon navbar-right far fa-user-circle fa-2x"  onclick="openNav()" style="color:rgb(201, 201, 201)";></i>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <div id="mySidebar" class="sidebar">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-      <a href="/profile">Perfil</a>
-      <a href="#">Contacto</a>
-      <a href="/logout">Salir</a>
-    </div>
+              <li class="nav-item active">
+                  <a class="nav-link fa fa-search" href="/search"> Search</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link fa fa-search-plus" href="/discover">Discover</a>
+              </li>
+              <li class="nav-item active">
+                  <a class="nav-link fas fa-star" href="/favorites">Favorites</a>
+              </li>
+              
+          </ul>
+      </div>
+      
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+          <ul class="navbar-nav navbar-right ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link far fa-user-circle fa-2x" onclick="openNav()" style="color:rgb(201, 201, 201)"; href="#"></a>
+              </li>
+              
+          </ul>
+      </div>
+  </nav>
+    
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="/profile">Perfil</a>
+    <a href="#">Contacto</a>
+    <a href="/logout">Salir</a>
+  </div>
     
     {% block main %}    
     
@@ -50,9 +68,17 @@
     <!-- Optional JavaScript -->
     <script src="{{ url_for('static',filename='jsvalidation.js') }}"></script>
     <script src="{{ url_for('static',filename='sidebar.js') }}"></script>
+    <script src="{{ url_for('static',filename='api.js') }}"></script>
+    <script src="{{ url_for('static',filename='ui.js') }}"></script>
+    
+    {% block script %}
+
+    {% endblock %}
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
   </body>
 </html>
