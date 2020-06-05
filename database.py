@@ -11,8 +11,14 @@ app.config['MYSQL_USER'] = 'b4d1f030cf5775'
 app.config['MYSQL_PASSWORD'] = '5cabae98'
 app.config['MYSQL_DB'] = 'heroku_dd6f5322f699d92'
 #app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-app.config['MYSQL_PORT'] = 3305
+#app.config['MYSQL_PORT'] = 3305
 mysql = MySQL(app)
+
+#mysql://b4d1f030cf5775:5cabae98@us-cdbr-east-05.cleardb.net/heroku_dd6f5322f699d92?reconnect=true
+#mysql --host=us-cdbr-east-05.cleardb.net --user=b4d1f030cf5775 --password=5cabae98 --reconnect heroku_dd6f5322f699d92 < C:\Users\HP\Desktop\PROYECTO DAW\project mockup\proyecto.sql
+
+
+
 
 #key for sessions
 app.config['SECRET_KEY']='etc_sa354Aasdf23'
