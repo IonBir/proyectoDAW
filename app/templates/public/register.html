@@ -13,19 +13,19 @@
           <h2 class="fadeIn first">
               Crea una cuenta
           </h2>
-          <form action="/register"method="POST" name="register">
+          <form onsubmit="return validate(event)" action="/register" method="POST"  name="register">
               <div class="form-group">
-              <input type="text" id="name" class="fadeIn second form-control" name="name" placeholder="Nombre Usuario">
+              <input type="text" id="name" class="fadeIn second form-control" name="name" placeholder="Nombre Usuario" required>
               <div class="invalid-feedback">El nombre de usuario puede tener de 3 a 15 caracteres</div>
               </div>
 
               <div class="form-group">
-              <input type="password" id="password" class="fadeIn second form-control" name="password" placeholder="Contraseña">
+              <input type="password" id="password" class="fadeIn second form-control" name="password" placeholder="Contraseña" required>
               <div class="invalid-feedback">La Contraseña puede tener de 8 a 15 caracteres alfanumericos</div>
               </div>
 
               <div class="form-group">
-              <input type="text" id="email" class="fadeIn second form-control" name="email" placeholder="Correo Electronico">
+              <input type="text" id="email" class="fadeIn second form-control" name="email" placeholder="Correo Electronico" required>
               <div class="invalid-feedback">Correo invalido</div>
               </div>
 

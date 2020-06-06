@@ -10,16 +10,18 @@ function validateName(){
 
     if(!er.test(name.value)){
         name.classList.add('is-invalid');
+        return false;
     }else{
         name.classList.remove('is-invalid');
     }
 }
 function validatePassword(){
     const password = document.getElementById('password');
-    const ep = /^[a-zA-Z]{8,15}$/;
+    const ep = /^[a-zA-Z0-9]{8,15}$/;
 
     if(!ep.test(password.value)){
         password.classList.add('is-invalid');
+        return false;
     }else{
         password.classList.remove('is-invalid');
     }
@@ -31,11 +33,30 @@ function validatePassword(){
     
         if(!er.test(email.value)){
            email.classList.add('is-invalid');
+           return false;
         }else{
             email.classList.remove('is-invalid');
         }
     }
 
+
+function validate(e){
+    
+    if(validateName()==false){
+        e.preventDefault();
+        alert('Formato nombre incorecto');
+    }
+    if(validatePassword()==false){
+        e.preventDefault();
+        alert('Formato contraseña incorecto');
+    }
+    if(validateEmail()==false){
+        e.preventDefault();
+        alert('Formato correo incorecto');
+    }
+    return true;
+   
+}
 
 
 
